@@ -23,7 +23,7 @@ export function AnnouncementBar({ items, store, showSwitcher }: { items: StoreCo
   if (!items.length) return null;
   const item = items[index] ?? items[0]!;
   return (
-    <div className="bg-announce text-announce-fg" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} onFocus={() => setHovering(true)} onBlur={() => setHovering(false)}>
+    <aside aria-label="Announcements" className="bg-announce text-announce-fg" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} onFocus={() => setHovering(true)} onBlur={() => setHovering(false)}>
       <div className="page flex h-9 items-center justify-between gap-3 text-xs">
         <div className="hidden w-40 lg:block" aria-hidden />
         <p className="min-w-0 flex-1 truncate text-center tracking-wide" aria-live={rotating ? "off" : "polite"}>
@@ -46,6 +46,6 @@ export function AnnouncementBar({ items, store, showSwitcher }: { items: StoreCo
           {showSwitcher && <StoreSwitcher current={store} className="hidden lg:block" />}
         </div>
       </div>
-    </div>
+    </aside>
   );
 }

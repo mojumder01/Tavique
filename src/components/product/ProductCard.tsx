@@ -133,7 +133,12 @@ export function ProductCard({ product, style, aspect, priority, sizes = "(min-wi
         {style === "beauty" && (
           <button type="button" onClick={quickAdd} disabled={soldOut} className="btn-type relative z-10 inline-flex h-11 items-center justify-center gap-2 rounded-btn bg-accent text-accent-fg transition-opacity hover:opacity-90 disabled:bg-muted disabled:text-fg-muted">
             {soldOut ? "Sold out" : <>Add to bag · {formatPrice(product.price)}</>}
-            {product.originalPrice && !soldOut && <s className="font-normal opacity-75">{formatPrice(product.originalPrice)}</s>}
+            {product.originalPrice && !soldOut && (
+              <s className="font-normal">
+                <span className="sr-only">was </span>
+                {formatPrice(product.originalPrice)}
+              </s>
+            )}
             <span className="sr-only"> {product.title}</span>
           </button>
         )}

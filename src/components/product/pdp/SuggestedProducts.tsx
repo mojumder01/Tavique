@@ -21,7 +21,7 @@ export function SuggestedProducts({ products, title = "You may also like" }: { p
       <h2 id="suggested-title" className="heading text-2xl md:text-3xl">
         {title}
       </h2>
-      <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+      <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {products.map((p) => (
           <li key={p.id} className="flex gap-4 rounded-card border border-line bg-bg p-3">
             <Link href={productHref(p.slug)} className="relative h-28 w-22 shrink-0 overflow-hidden rounded-[calc(var(--r-card)/1.5)] bg-muted">

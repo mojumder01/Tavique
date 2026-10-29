@@ -12,7 +12,7 @@ export function JournalCards({ articles }: { articles: Article[] }) {
   const [open, setOpen] = useState<Article | null>(null);
   return (
     <>
-      <ul className="grid gap-8 md:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {articles.map((a) => (
           <li key={a.id} className="reveal">
             <button type="button" onClick={() => setOpen(a)} className="group block w-full text-left" aria-haspopup="dialog">

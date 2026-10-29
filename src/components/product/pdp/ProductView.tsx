@@ -97,7 +97,7 @@ export function ProductView({ product, aspect, details, below }: { product: Prod
         : { icon: CheckCircle2, text: "In stock, ready to ship", tone: "text-success" };
 
   return (
-    <div className="grid gap-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8 xl:gap-x-16">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8 xl:gap-x-16">
       <div className="min-w-0 lg:col-span-7 lg:row-start-1">
         <ProductGallery images={product.images} index={imageIndex} onIndexChange={setImageIndex} aspect={aspect} title={product.title} />
       </div>
@@ -151,7 +151,13 @@ export function ProductView({ product, aspect, details, below }: { product: Prod
           <div className="mt-6 flex gap-3">
             <QuantitySelector value={qty} onChange={setQuantity} max={maxQty} />
             <Button size="lg" className="flex-1" onClick={() => submit(false)} disabled={soldOut}>
-              {soldOut ? "Sold out" : `Add to bag · ${formatPrice(v.price * qty)}`}
+              {soldOut ? (
+                  "Sold out"
+                ) : (
+                  <>
+                    Add to bag<span className="hidden xs:inline"> · {formatPrice(v.price * qty)}</span>
+                  </>
+                )}
             </Button>
           </div>
           <div className="mt-3 flex gap-3">
@@ -161,7 +167,7 @@ export function ProductView({ product, aspect, details, below }: { product: Prod
             <WishlistButton productId={product.id} title={product.title} variant="button" />
           </div>
 
-          <ul className="mt-6 grid gap-3 rounded-card border border-line bg-surface p-4 text-sm sm:grid-cols-2">
+          <ul className="mt-6 grid grid-cols-1 gap-3 rounded-card border border-line bg-surface p-4 text-sm sm:grid-cols-2">
             <li className="flex items-start gap-2.5">
               <Truck className="mt-0.5 size-4 shrink-0" aria-hidden />
               <span>

@@ -112,6 +112,7 @@ export function SearchBar({ store, placeholder, popular, autoFocus, onNavigate, 
     <div className={cn("relative", className)}>
       <form
         role="search"
+        aria-label={variant === "hero" ? "Product search" : variant === "overlay" ? "Search the store" : "Site search"}
         onSubmit={(e) => {
           e.preventDefault();
           submit();

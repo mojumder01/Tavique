@@ -29,7 +29,7 @@ export function ProductGallery({ images, index, onIndexChange, aspect, title }: 
   return (
     <div className="flex flex-col-reverse gap-3 md:flex-row md:gap-4" aria-roledescription="carousel" aria-label={`${title} images`}>
       {images.length > 1 && (
-        <ul className="no-scrollbar flex gap-2 overflow-x-auto md:max-h-[44rem] md:w-20 md:flex-col md:overflow-y-auto">
+        <ul className="relative no-scrollbar flex gap-2 overflow-x-auto md:max-h-[44rem] md:w-20 md:flex-col md:overflow-y-auto">
           {images.map((img, i) => (
             <li key={img.src} className="shrink-0">
               <button

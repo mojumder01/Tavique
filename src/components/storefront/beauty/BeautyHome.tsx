@@ -67,7 +67,7 @@ export function BeautyHome() {
     ),
     newArrivals: (
       <section key="newArrivals" className="page pb-20 md:pb-28" aria-labelledby="be-new-title">
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-6">
           <div className="reveal relative aspect-[4/5] overflow-hidden bg-muted lg:aspect-auto">
             <Image src={home.newArrivals.image} alt={home.newArrivals.imageAlt} fill sizes="(min-width: 1024px) 48vw, 100vw" className="object-cover" />
           </div>
@@ -101,7 +101,7 @@ export function BeautyHome() {
     ),
     spotlight: (
       <section key="spotlight" className="page py-20 md:py-28" aria-labelledby="be-spot-title">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="reveal relative aspect-[16/11] overflow-hidden rounded-card bg-muted lg:col-span-7">
             <Image src={home.spotlight.image} alt={home.spotlight.imageAlt} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
           </div>
@@ -130,7 +130,7 @@ export function BeautyHome() {
       <section key="reviews" className="border-y border-line bg-surface py-20 md:py-24" aria-labelledby="be-rev-title">
         <div className="page">
           <SectionHeading id="be-rev-title" title="Real skin, real results" align="center" />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {home.testimonials.map((t) => (
               <TestimonialCard key={t.author} t={t} productTitle={t.product ? titles[t.product] : undefined} />
             ))}

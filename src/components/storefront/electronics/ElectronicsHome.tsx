@@ -41,8 +41,8 @@ export function ElectronicsHome() {
   const sections: Record<(typeof home.sections)[number], React.ReactNode> = {
     hero: (
       <section key="hero" className="page pt-8 pb-12 md:pt-12">
-        <div className="grid gap-6 lg:grid-cols-12">
-          <div className="flex flex-col justify-center rounded-card border border-line bg-surface p-6 sm:p-10 lg:col-span-7 lg:p-14">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+          <div className="flex min-w-0 flex-col justify-center rounded-card border border-line bg-surface p-5 sm:p-10 lg:col-span-7 lg:p-14">
             <p className="inline-flex w-fit items-center gap-2 rounded-full bg-muted px-3 py-1 text-xs font-medium text-fg-muted">
               <span className="size-1.5 rounded-full bg-primary" aria-hidden />
               {home.hero.eyebrow}
@@ -172,9 +172,9 @@ export function ElectronicsHome() {
     compare: (
       <section key="compare" className="page pb-20" aria-labelledby="el-compare-title">
         <div className="overflow-hidden rounded-card border border-line bg-surface">
-          <div className="grid lg:grid-cols-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="p-6 sm:p-10 lg:col-span-4">
-              <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">{home.compare.eyebrow}</p>
+              <p className="text-xs font-semibold tracking-[0.16em] text-accent uppercase">{home.compare.eyebrow}</p>
               <h2 id="el-compare-title" className="heading mt-3 text-3xl md:text-4xl">
                 {home.compare.title}
               </h2>
@@ -183,7 +183,7 @@ export function ElectronicsHome() {
                 <Image src={home.compare.image} alt={home.compare.imageAlt} fill sizes="(min-width: 1024px) 30vw, 90vw" className="object-cover" />
               </div>
             </div>
-            <div className="overflow-x-auto border-t border-line lg:col-span-8 lg:border-t-0 lg:border-l">
+            <div className="relative overflow-x-auto border-t border-line lg:col-span-8 lg:border-t-0 lg:border-l">
               <table className="w-full min-w-[40rem] text-left text-sm">
                 <caption className="sr-only">Specification comparison</caption>
                 <thead>
@@ -249,7 +249,7 @@ export function ElectronicsHome() {
     reviews: (
       <section key="reviews" className="page pb-20" aria-labelledby="el-rev-title">
         <SectionHeading id="el-rev-title" eyebrow={`${reviewAverage.toFixed(1)} average from ${reviewTotal.toLocaleString("en-US")} product reviews`} title="What customers say" titleClassName="text-2xl md:text-3xl" />
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {home.testimonials.map((t) => (
             <TestimonialCard key={t.author} t={t} productTitle={t.product ? titles[t.product] : undefined} />
           ))}

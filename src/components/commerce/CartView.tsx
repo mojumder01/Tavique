@@ -24,7 +24,7 @@ export function CartView({ continueHref, suggestions, card }: { continueHref: st
 
   if (!hydrated) {
     return (
-      <div className="grid gap-10 lg:grid-cols-12" role="status" aria-label="Loading your bag">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12" role="status" aria-label="Loading your bag">
         <div className="space-y-6 lg:col-span-8">
           {[0, 1].map((i) => (
             <div key={i} className="flex gap-4">
@@ -60,7 +60,7 @@ export function CartView({ continueHref, suggestions, card }: { continueHref: st
   }
 
   return (
-    <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
       <section aria-labelledby="bag-items" className="lg:col-span-8">
         <h2 id="bag-items" className="sr-only">
           Items

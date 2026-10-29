@@ -66,7 +66,7 @@ export function Showcase() {
         </section>
 
         <section id="demos" aria-label="Storefront demos" className="page scroll-mt-6 pb-24">
-          <ul className="grid gap-6 lg:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {enabledStores.map((id, i) => {
               const c = storeConfigs[id];
               return (
@@ -94,7 +94,7 @@ export function Showcase() {
             <h2 id="features-title" className="heading max-w-2xl text-4xl md:text-5xl">
               Everything a real store needs — and honest about what&apos;s a demo.
             </h2>
-            <ul className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
               {features.map((f) => (
                 <li key={f.title}>
                   <f.icon className="size-6 text-accent" aria-hidden />
@@ -106,7 +106,7 @@ export function Showcase() {
           </div>
         </section>
 
-        <section aria-labelledby="config-title" className="page grid gap-10 py-20 md:py-28 lg:grid-cols-2 lg:items-center">
+        <section aria-labelledby="config-title" className="page grid grid-cols-1 gap-10 py-20 md:py-28 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 id="config-title" className="heading text-4xl md:text-5xl">
               Launch one storefront — or all three.
@@ -115,7 +115,7 @@ export function Showcase() {
               Pick what the home page shows, which storefronts are live, and edit brand colours, fonts, navigation and homepage sections from typed config files. No component rewrites required.
             </p>
           </div>
-          <pre className="overflow-x-auto rounded-card bg-[#1d1b19] p-6 font-mono text-[13px] leading-relaxed text-[#ece6dd]">
+          <pre className="relative overflow-x-auto rounded-card bg-[#1d1b19] p-6 font-mono text-[13px] leading-relaxed text-[#ece6dd]">
             <code>{`// src/config/site.config.ts
 export const siteConfig = {
   name: "Tavique",

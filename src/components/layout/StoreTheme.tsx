@@ -16,6 +16,7 @@ const paletteVars = (p: Palette) =>
     ["--c-accent", p.accent],
     ["--c-accent-fg", p.accentForeground],
     ["--c-sale", p.sale],
+    ["--c-sale-fg", p.saleForeground ?? "#ffffff"],
     ["--c-success", p.success],
     ["--c-announce-bg", p.announcementBackground],
     ["--c-announce-fg", p.announcementForeground],

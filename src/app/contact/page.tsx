@@ -22,7 +22,7 @@ export default async function ContactPage() {
     <StoreShell store={store}>
       <div className="page pt-6 pb-24 md:pt-8">
         <Breadcrumbs items={[{ label: "Home", href: storeHome(store) }, { label: "Contact" }]} />
-        <div className="mt-8 grid gap-12 lg:grid-cols-12">
+        <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h1 className="heading text-4xl md:text-6xl">Get in touch</h1>
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-fg-muted">We usually reply within one business day. For order questions, include your order reference.</p>

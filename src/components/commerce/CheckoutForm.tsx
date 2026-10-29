@@ -31,7 +31,7 @@ function AddressFields({ prefix, register, errors }: { prefix: Prefix; register:
   const e = (errors[prefix] ?? {}) as Partial<Record<string, { message?: string }>>;
   const id = (f: string) => `${prefix}-${f}`;
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       <Field id={id("firstName")} label="First name" error={e.firstName?.message}>
         <Input id={id("firstName")} autoComplete={`${prefix} given-name`} {...describedBy(id("firstName"), e.firstName?.message)} {...register(`${prefix}.firstName`)} />
       </Field>
@@ -136,7 +136,7 @@ export function CheckoutForm({ continueHref }: { continueHref: string }) {
 
   if (!hydrated) {
     return (
-      <div className="grid gap-10 lg:grid-cols-12" role="status" aria-label="Loading checkout">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12" role="status" aria-label="Loading checkout">
         <Skeleton className="h-[40rem] lg:col-span-7" />
         <Skeleton className="h-96 lg:col-span-5" />
       </div>
@@ -186,7 +186,7 @@ export function CheckoutForm({ continueHref }: { continueHref: string }) {
         setSubmitted(true);
         void handleSubmit(onValid, () => requestAnimationFrame(() => summaryRef.current?.focus()))(e);
       }}
-      className="grid gap-10 lg:grid-cols-12 lg:gap-14"
+      className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14"
     >
       <div className="space-y-8 lg:col-span-7">
         {siteConfig.demoMode && (
@@ -215,7 +215,7 @@ export function CheckoutForm({ continueHref }: { continueHref: string }) {
         )}
 
         <Section step={1} title="Contact">
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field id="email" label="Email" error={errors.email?.message} hint="For your order confirmation (not sent in the demo).">
               <Input id="email" type="email" autoComplete="email" {...describedBy("email", errors.email?.message, true)} {...register("email")} />
             </Field>

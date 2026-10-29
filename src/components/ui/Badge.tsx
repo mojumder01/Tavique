@@ -4,9 +4,8 @@ import { cn } from "@/lib/utils";
 const tones = {
   neutral: "bg-surface/95 text-fg border border-line",
   dark: "bg-fg text-bg",
-  sale: "bg-sale text-white",
+  sale: "bg-sale text-sale-fg",
   accent: "bg-accent text-accent-fg",
-  success: "bg-success text-white",
   outline: "border border-current text-fg",
 } as const;
 

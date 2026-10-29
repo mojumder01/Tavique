@@ -17,6 +17,7 @@
   --color-accent: var(--c-accent);
   --color-accent-fg: var(--c-accent-fg);
   --color-sale: var(--c-sale);
+  --color-sale-fg: var(--c-sale-fg);
   --color-success: var(--c-success);
   --color-announce: var(--c-announce-bg);
   --color-announce-fg: var(--c-announce-fg);
@@ -73,6 +74,7 @@
   --c-accent: #7a5c3a;
   --c-accent-fg: #ffffff;
   --c-sale: #a33a2c;
+  --c-sale-fg: #ffffff;
   --c-success: #3d6b4d;
   --c-announce-bg: #1d1b19;
   --c-announce-fg: #ece6dd;

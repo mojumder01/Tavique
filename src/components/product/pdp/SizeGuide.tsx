@@ -41,7 +41,7 @@ export function SizeGuide({ kind, fit }: { kind: "apparel" | "footwear"; fit?: s
       <Modal open={open} onClose={() => setOpen(false)} title="Size guide" description={kind === "apparel" ? "Body measurements. If you're between sizes, size up for a relaxed fit." : "Measure your foot from heel to longest toe."} size="lg">
         <div className="space-y-5 p-5">
           {fit && <p className="rounded-card bg-muted p-3 text-sm">{fit}</p>}
-          <div className="overflow-x-auto">
+          <div className="relative overflow-x-auto">
             <table className="w-full min-w-[32rem] text-left text-sm">
               <caption className="sr-only">{kind === "apparel" ? "Apparel size chart" : "Footwear size chart"}</caption>
               <thead>

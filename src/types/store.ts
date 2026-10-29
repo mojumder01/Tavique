@@ -29,6 +29,8 @@ export interface Palette {
   accent: string;
   accentForeground: string;
   sale: string;
+  /** Text colour on solid sale backgrounds (badges). Defaults to white. */
+  saleForeground?: string;
   success: string;
   announcementBackground: string;
   announcementForeground: string;

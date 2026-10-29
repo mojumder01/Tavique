@@ -43,7 +43,7 @@ export function OrderConfirmation({ continueHref }: { continueHref: string }) {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 rounded-card border border-line bg-surface p-6 sm:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 gap-6 rounded-card border border-line bg-surface p-6 sm:grid-cols-3">
         <div>
           <p className="eyebrow">Delivery</p>
           <p className="mt-2 text-sm">{order.shippingMethod}</p>

@@ -68,7 +68,7 @@ export function ContactForm({ store }: { store: StoreId }) {
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)} className="grid gap-5 sm:grid-cols-2">
+    <form noValidate onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <Field id="c-name" label="Name" error={e.name?.message}>
         <Input id="c-name" autoComplete="name" {...describedBy("c-name", e.name?.message)} {...register("name")} />
       </Field>

@@ -123,7 +123,7 @@ function AddressDialog({ address, onClose }: { address: DemoAddress | null | "ne
     <Modal open={address !== null} onClose={onClose} title={editing ? "Edit address" : "Add address"} description="Saved for this browser session only (demo)." size="lg">
       <form
         noValidate
-        className="grid gap-4 p-5 sm:grid-cols-2"
+        className="grid grid-cols-1 gap-4 p-5 sm:grid-cols-2"
         onSubmit={handleSubmit((v) => {
           save({ id: editing?.id ?? localId("addr"), label: v.label, name: `${v.firstName} ${v.lastName}`.trim(), line1: [v.address1, v.address2].filter(Boolean).join(", "), city: v.city, postalCode: v.postalCode, country: v.country, isDefault: v.isDefault });
           onClose();
@@ -190,9 +190,9 @@ function Dashboard({ name }: { name: string }) {
   ] as const;
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[15rem_1fr]">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[15rem_1fr]">
       <nav aria-label="Account">
-        <div role="tablist" aria-orientation="vertical" className="flex gap-1 overflow-x-auto lg:flex-col">
+        <div role="tablist" aria-orientation="vertical" className="relative flex gap-1 overflow-x-auto lg:flex-col">
           {tabs.map((t) => (
             <button
               key={t.id}
@@ -219,7 +219,7 @@ function Dashboard({ name }: { name: string }) {
         {tab === "overview" && (
           <div className="space-y-6">
             <h2 className="heading text-3xl">Welcome back, {name}.</h2>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {[
                 { label: "Demo orders", value: orders.length },
                 { label: "Saved items", value: saved },
@@ -249,7 +249,7 @@ function Dashboard({ name }: { name: string }) {
         {tab === "orders" && (
           <div>
             <h2 className="heading text-3xl">Order history</h2>
-            <div className="mt-6 overflow-x-auto rounded-card border border-line bg-surface">
+            <div className="relative mt-6 overflow-x-auto rounded-card border border-line bg-surface">
               <table className="w-full min-w-[34rem] text-left text-sm">
                 <caption className="sr-only">Your orders</caption>
                 <thead className="border-b border-line text-xs text-fg-muted">
@@ -314,7 +314,7 @@ function Dashboard({ name }: { name: string }) {
                 <Plus className="size-4" aria-hidden /> Add address
               </Button>
             </div>
-            <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+            <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {addresses.map((a) => (
                 <li key={a.id} className="flex flex-col rounded-card border border-line bg-surface p-5 text-sm">
                   <p className="flex items-center gap-2 font-medium">
@@ -367,7 +367,7 @@ export function AccountView({ continueHref }: { continueHref: string }) {
   if (name) return <Dashboard name={name} />;
 
   return (
-    <div className="grid gap-12 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
       <div className="max-w-md">
         <div role="tablist" aria-label="Account access" className="mb-8 flex gap-6 border-b border-line">
           {(["signin", "register"] as const).map((m) => (

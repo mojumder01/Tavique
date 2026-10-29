@@ -24,7 +24,7 @@ export default function NotFound() {
         <p className="eyebrow mt-6">Error 404</p>
         <h1 className="heading mt-3 text-4xl md:text-6xl">This page has wandered off</h1>
         <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-fg-muted">The page you&apos;re looking for doesn&apos;t exist or has moved. Pick a storefront or search the catalogue.</p>
-        <ul className="mt-10 grid w-full max-w-2xl gap-3 sm:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-1 w-full max-w-2xl gap-3 sm:grid-cols-3">
           {enabledStores.map((id) => (
             <li key={id}>
               <Link href={storeHome(id)} className="flex items-center justify-between rounded-card border border-line bg-surface px-4 py-4 text-left text-sm transition-colors hover:border-fg">

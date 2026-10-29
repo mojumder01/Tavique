@@ -17,7 +17,7 @@ export const beautyConfig: StoreConfig<"beauty"> = {
       border: "#eaddd4",
       primary: "#5e4a42",
       primaryForeground: "#fbf7f3",
-      accent: "#8a6556",
+      accent: "#805d4f",
       accentForeground: "#ffffff",
       sale: "#a3413a",
       success: "#4f7a5a",

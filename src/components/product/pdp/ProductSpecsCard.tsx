@@ -7,7 +7,7 @@ export function ProductSpecsCard({ groups, title = "Specifications" }: { groups:
       <h2 id="specs-title" className="heading text-2xl md:text-3xl">
         {title}
       </h2>
-      <div className="mt-6 grid gap-x-10 gap-y-7 md:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-7 md:grid-cols-2">
         {groups.map((g) => (
           <table key={g.title} className="w-full self-start text-left text-sm">
             <caption className="mb-2 text-left text-xs font-semibold tracking-[0.12em] uppercase">{g.title}</caption>

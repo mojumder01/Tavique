@@ -24,7 +24,7 @@ export default async function AboutPage() {
       <div className="page pt-6 md:pt-8">
         <Breadcrumbs items={[{ label: "Home", href: storeHome(store) }, { label: "About" }]} />
       </div>
-      <section className="page grid gap-10 py-12 md:py-20 lg:grid-cols-12 lg:items-center">
+      <section className="page grid grid-cols-1 gap-10 py-12 md:py-20 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-6">
           <p className="eyebrow">Our story</p>
           <h1 className="heading mt-4 text-5xl md:text-7xl">Considered by design.</h1>
@@ -42,7 +42,7 @@ export default async function AboutPage() {
           <h2 id="values-title" className="heading text-3xl md:text-4xl">
             What we believe
           </h2>
-          <ul className="mt-10 grid gap-10 md:grid-cols-3">
+          <ul className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3">
             {values.map((v, i) => (
               <li key={v.title}>
                 <p className="text-sm text-fg-muted tabular-nums">0{i + 1}</p>
@@ -57,7 +57,7 @@ export default async function AboutPage() {
         <h2 id="stores-title" className="heading text-3xl md:text-4xl">
           Our storefronts
         </h2>
-        <ul className="mt-10 grid gap-6 md:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {enabledStores.map((id) => (
             <li key={id} className="rounded-card border border-line bg-surface p-6">
               <h3 className="heading text-2xl">{storeConfigs[id].label}</h3>

@@ -28,7 +28,7 @@ export function FashionHome() {
   const sections: Record<(typeof home.sections)[number], React.ReactNode> = {
     hero: (
       <section key="hero" className="page pt-6 pb-16 md:pt-10 md:pb-24">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="relative aspect-[4/5] overflow-hidden rounded-card bg-muted lg:col-span-6 lg:aspect-auto lg:min-h-[44rem]">
             <Image src={home.hero.image} alt={home.hero.imageAlt} fill preload sizes="(min-width: 1024px) 48vw, 100vw" className="object-cover" />
           </div>
@@ -47,7 +47,7 @@ export function FashionHome() {
                 </ButtonLink>
               )}
             </div>
-            <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {home.hero.highlights.map((h, i) => (
                 <div key={h.title} className="grid grid-cols-[7.5rem_1fr] overflow-hidden rounded-card border border-line bg-surface">
                   <div className="relative min-h-36 bg-muted">
@@ -68,7 +68,7 @@ export function FashionHome() {
     categories: (
       <section key="categories" className="page pb-20 md:pb-28" aria-labelledby="fa-cat-title">
         <SectionHeading id="fa-cat-title" eyebrow="Shop by category" title="Find your next essential" action={{ label: "Shop all", href: categoryHref("shop-fashion") }} />
-        <ul className="no-scrollbar -mx-4 flex snap-x gap-3 overflow-x-auto px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-6 lg:gap-5 lg:overflow-visible lg:px-0">
+        <ul className="relative no-scrollbar -mx-4 flex snap-x gap-3 overflow-x-auto px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-6 lg:gap-5 lg:overflow-visible lg:px-0">
           {home.categoryTiles.map((slug) => {
             const c = getCategory(slug);
             if (!c) return null;
@@ -101,7 +101,7 @@ export function FashionHome() {
     ),
     featuredCollection: (
       <section key="featuredCollection" className="bg-surface py-20 md:py-28" aria-labelledby="fa-feat-title">
-        <div className="page grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="page grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="reveal relative aspect-[4/5] overflow-hidden rounded-card bg-muted lg:col-span-6">
             <Image src={home.featuredCollection.image} alt={home.featuredCollection.imageAlt} fill sizes="(min-width: 1024px) 46vw, 100vw" className="object-cover" />
           </div>
@@ -127,7 +127,7 @@ export function FashionHome() {
     ),
     story: (
       <section key="story" className="page py-20 md:py-32" aria-labelledby="fa-story-title">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5 lg:col-start-2">
             <p className="eyebrow">{home.story.eyebrow}</p>
             <h2 id="fa-story-title" className="heading mt-4 text-5xl italic md:text-6xl">
@@ -174,7 +174,7 @@ export function FashionHome() {
     reviews: (
       <section key="reviews" className="page py-20 md:py-28" aria-labelledby="fa-rev-title">
         <SectionHeading id="fa-rev-title" eyebrow="In their words" title="Worn and loved" align="center" />
-        <div className="grid gap-12 md:grid-cols-3 md:gap-10">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-10">
           {home.testimonials.map((t) => (
             <div key={t.author} className="reveal border-t border-line pt-8">
               <TestimonialCard t={t} variant="quote" productTitle={t.product ? titles[t.product] : undefined} />

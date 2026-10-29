@@ -45,7 +45,7 @@ export function DesktopNavigation({ items, align = "left", tone = "default", cla
           if (!item.mega) {
             return (
               <li key={item.label} onMouseEnter={() => schedule(null, 80)}>
-                <Link href={item.href} className={cn(linkClass, item.label === "Sale" || item.label === "Deals" ? "text-sale hover:text-sale/80" : "")} aria-current={active ? "page" : undefined}>
+                <Link href={item.href} className={cn(linkClass, item.label === "Sale" || item.label === "Deals" ? "text-sale underline-offset-4 hover:text-sale hover:underline" : "")} aria-current={active ? "page" : undefined}>
                   {item.label}
                 </Link>
               </li>

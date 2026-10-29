@@ -50,9 +50,12 @@ export function SiteHeader({ store, logo, layout, sticky, nav, search, hasDarkTh
   const actions = (
     <div className="flex items-center gap-0.5 sm:gap-1">
       {layout !== "search" && (
-        <IconButton label="Search" onClick={() => setSearchOpen(true)} className={layout === "centered" ? "hidden lg:inline-flex" : ""}>
-          <Search className="size-[1.15rem]" aria-hidden />
-        </IconButton>
+        // The centered layout shows search on the left on small screens, so hide this copy there.
+        <span className={layout === "centered" ? "hidden lg:contents" : "contents"}>
+          <IconButton label="Search" onClick={() => setSearchOpen(true)}>
+            <Search className="size-[1.15rem]" aria-hidden />
+          </IconButton>
+        </span>
       )}
       {hasDarkTheme && <ThemeToggle />}
       <Link href="/account" aria-label="Account" title="Account" className="hidden size-10 items-center justify-center rounded-full hover:bg-muted sm:inline-flex">
@@ -106,7 +109,7 @@ export function SiteHeader({ store, logo, layout, sticky, nav, search, hasDarkTh
 
         {layout === "centered" && (
           <>
-            <div className="page grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4 lg:h-20">
+            <div className="page grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-1 sm:gap-4 lg:h-20">
               <div className="flex items-center gap-1">
                 {menuButton}
                 <IconButton label="Search" onClick={() => setSearchOpen(true)} className="lg:hidden">

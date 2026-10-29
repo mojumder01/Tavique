@@ -18,7 +18,7 @@ export default async function ShippingReturnsPage() {
         <h1 className="heading mt-8 max-w-3xl text-4xl md:text-6xl">Shipping, returns & warranty</h1>
         <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted">Clear, fair policies — shown here as demo content you can edit in this page and in <code className="font-mono text-xs">src/config/commerce.config.ts</code>.</p>
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-12">
+        <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12">
           <nav aria-label="On this page" className="lg:col-span-3">
             <ul className="space-y-2 text-sm lg:sticky lg:top-28">
               <li>
@@ -43,7 +43,7 @@ export default async function ShippingReturnsPage() {
               <h2 id="shipping-title" className="heading flex items-center gap-3 text-3xl">
                 <Truck className="size-6" aria-hidden /> Shipping
               </h2>
-              <div className="mt-6 overflow-x-auto rounded-card border border-line bg-surface">
+              <div className="relative mt-6 overflow-x-auto rounded-card border border-line bg-surface">
                 <table className="w-full min-w-[30rem] text-left text-sm">
                   <caption className="sr-only">Shipping methods and costs</caption>
                   <thead className="border-b border-line text-xs text-fg-muted">

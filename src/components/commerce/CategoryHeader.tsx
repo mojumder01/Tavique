@@ -27,7 +27,7 @@ export function CategoryHeader({ category, count }: { category: Category; count:
           </div>
         )}
       </div>
-      <nav aria-label={`${config.label} categories`} className="no-scrollbar -mx-4 mt-8 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <nav aria-label={`${config.label} categories`} className="relative no-scrollbar -mx-4 mt-8 overflow-x-auto px-4 sm:mx-0 sm:px-0">
         <ul className="flex gap-2">
           {siblings.map((c) => (
             <li key={c.slug}>

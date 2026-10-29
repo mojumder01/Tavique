@@ -27,7 +27,7 @@ function QuickAddContent({ product, onDone }: { product: ProductSummary; onDone:
   const qty = Math.min(quantity, maxQty);
 
   return (
-    <div className="grid gap-6 p-5 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:p-6">
+    <div className="grid grid-cols-1 gap-6 p-5 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:p-6">
       <div className="relative aspect-[4/5] overflow-hidden rounded-card bg-muted">
         <Image src={v.image ?? product.images[0]?.src ?? ""} alt={product.images[0]?.alt ?? product.title} fill sizes="(min-width: 640px) 320px, 90vw" className="object-cover" />
       </div>

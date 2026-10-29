@@ -43,7 +43,7 @@ export function ProductDescriptionCard({ product }: { product: Product }) {
       {product.highlights && product.highlights.length > 0 && (
         <>
           <h3 className="mt-7 text-sm font-semibold">Highlights</h3>
-          <ul className="mt-3 grid gap-x-6 gap-y-2.5 text-sm sm:grid-cols-2">
+          <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2.5 text-sm sm:grid-cols-2">
             {product.highlights.map((h) => (
               <li key={h} className="flex gap-2.5">
                 <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-success" aria-hidden />
@@ -55,7 +55,7 @@ export function ProductDescriptionCard({ product }: { product: Product }) {
       )}
 
       {facts.length > 0 && (
-        <dl className="mt-7 grid gap-x-6 gap-y-4 border-t border-line pt-6 text-sm sm:grid-cols-2">
+        <dl className="mt-7 grid grid-cols-1 gap-x-6 gap-y-4 border-t border-line pt-6 text-sm sm:grid-cols-2">
           {facts.map((f) => (
             <div key={f.label}>
               <dt className="text-xs font-semibold tracking-[0.12em] uppercase">{f.label}</dt>
