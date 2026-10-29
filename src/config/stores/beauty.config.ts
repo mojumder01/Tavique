@@ -68,7 +68,7 @@ export const beautyConfig: StoreConfig<"beauty"> = {
   facetLabels: { "attr:concern": "Concern", "attr:skinType": "Skin type", "attr:hairType": "Hair type", "attr:formulation": "Formulation", "option:shade": "Shade" },
   productCard: { aspect: "4/5", style: "beauty" },
   search: { placeholder: "Search serums, multi-stick, SPF…", popular: ["Vitamin C", "Multi-Stick", "SPF", "Cleanser", "Hair oil"] },
-  newsletter: { title: "Join Tavique Beauty", body: "Get 10% off your first order, plus early access to launches and routines from our formulators." },
+  newsletter: { title: "Join Tavique Beauty", body: "Early access to launches and routines from our formulators. New here? Use code WELCOME10 for 10% off your first order." },
   bestSellers: ["multi-stick-cheek-lip", "vitamin-c-brightening-serum", "ceramide-barrier-cream", "santal-rose-eau-de-parfum", "nourishing-hair-oil", "satin-balm-lipstick", "skin-tint-serum-spf-30", "restoring-hand-cream"],
   home: {
     sections: ["hero", "concerns", "bestSellers", "newArrivals", "routine", "spotlight", "reviews", "journal", "newsletter"],

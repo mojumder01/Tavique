@@ -68,12 +68,12 @@ export function ProductCard({ product, style, aspect, priority, sizes = "(min-wi
             <Plus className="size-3.5" aria-hidden /> Quick add<span className="sr-only"> {product.title}</span>
           </button>
         )}
-        {style !== "beauty" && !soldOut && (
+        {style === "editorial" && !soldOut && (
           <button
             type="button"
             onClick={quickAdd}
             aria-label={`Quick add ${product.title}`}
-            className={cn("absolute right-2.5 bottom-2.5 z-10 inline-flex size-9 items-center justify-center rounded-full bg-bg/95 text-fg shadow-sm", style === "editorial" ? "sm:hidden [@media(hover:none)]:inline-flex" : "hidden")}
+            className="absolute right-2.5 bottom-2.5 z-10 inline-flex size-9 items-center justify-center rounded-full bg-bg/95 text-fg shadow-sm sm:hidden [@media(hover:none)]:inline-flex"
           >
             <Plus className="size-4" aria-hidden />
           </button>
@@ -122,14 +122,16 @@ export function ProductCard({ product, style, aspect, priority, sizes = "(min-wi
           </div>
         )}
 
+        {style === "tech" && <span aria-hidden className="min-h-4 flex-1" />}
         {style === "tech" && (
-          <button type="button" onClick={quickAdd} disabled={soldOut} className="btn-type relative z-10 mt-4 inline-flex h-10 items-center justify-center gap-1.5 rounded-btn bg-primary text-primary-fg transition-opacity hover:opacity-90 disabled:bg-muted disabled:text-fg-muted">
+          <button type="button" onClick={quickAdd} disabled={soldOut} className="btn-type relative z-10 inline-flex h-10 items-center justify-center gap-1.5 rounded-btn bg-primary text-primary-fg transition-opacity hover:opacity-90 disabled:bg-muted disabled:text-fg-muted">
             {soldOut ? "Sold out" : "Add to cart"}
             <span className="sr-only"> {product.title}</span>
           </button>
         )}
+        {style === "beauty" && <span aria-hidden className="min-h-3.5 flex-1" />}
         {style === "beauty" && (
-          <button type="button" onClick={quickAdd} disabled={soldOut} className="btn-type relative z-10 mt-3.5 inline-flex h-11 items-center justify-center gap-2 rounded-btn bg-accent text-accent-fg transition-opacity hover:opacity-90 disabled:bg-muted disabled:text-fg-muted">
+          <button type="button" onClick={quickAdd} disabled={soldOut} className="btn-type relative z-10 inline-flex h-11 items-center justify-center gap-2 rounded-btn bg-accent text-accent-fg transition-opacity hover:opacity-90 disabled:bg-muted disabled:text-fg-muted">
             {soldOut ? "Sold out" : <>Add to bag · {formatPrice(product.price)}</>}
             {product.originalPrice && !soldOut && <s className="font-normal opacity-75">{formatPrice(product.originalPrice)}</s>}
             <span className="sr-only"> {product.title}</span>
