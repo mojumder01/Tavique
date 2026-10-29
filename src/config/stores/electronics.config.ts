@@ -104,7 +104,7 @@ export const electronicsConfig: StoreConfig<"electronics"> = {
       { title: "Free delivery", body: "On orders over $150", icon: "truck" },
       { title: "2-year warranty", body: "On every device", icon: "shield" },
       { title: "30-day returns", body: "Change of mind included", icon: "rotate" },
-      { title: "Secure checkout", body: "Encrypted payments", icon: "lock" },
+      { title: "Secure checkout", body: "No card details stored", icon: "lock" },
     ],
     deals: { title: "Limited-time deals", body: "Reduced prices on bestselling audio, wearables and smart home.", products: ["halden-aura-anc-headphones", "voltara-boom-speaker", "orbis-run-gps-watch", "voltara-power-20k", "orbis-clean-s8", "arcline-one-lite"] },
     brands: [

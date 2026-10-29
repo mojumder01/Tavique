@@ -22,8 +22,9 @@ interface ModalProps {
 const widths = { sm: "max-w-md", md: "max-w-lg", lg: "max-w-2xl", xl: "max-w-4xl" };
 
 /**
- * Accessible dialog built on the native <dialog> element: focus is moved inside and the page
- * behind becomes inert while open, Escape closes, and focus returns to the opener on close.
+ * Accessible dialog built on the native <dialog> element: focus is moved inside (to the element
+ * marked `data-autofocus`, if any) and the page behind becomes inert while open, Escape closes,
+ * and focus returns to the opener on close.
  */
 export function Modal({ open, onClose, title, hideTitle, description, children, footer, placement = "center", size = "md", className }: ModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -37,6 +38,8 @@ export function Modal({ open, onClose, title, hideTitle, description, children, 
     if (open && !dialog.open) {
       opener.current = document.activeElement;
       dialog.showModal();
+      // showModal() focuses the first focusable element; honour an explicit target instead.
+      dialog.querySelector<HTMLElement>("[data-autofocus]")?.focus();
       document.documentElement.style.overflow = "hidden";
     } else if (!open && dialog.open) {
       dialog.close();

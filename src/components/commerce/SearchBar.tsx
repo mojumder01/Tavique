@@ -134,6 +134,7 @@ export function SearchBar({ store, placeholder, popular, autoFocus, onNavigate, 
           aria-label="Search products"
           placeholder={placeholder}
           autoFocus={autoFocus}
+          data-autofocus={autoFocus || undefined}
           autoComplete="off"
           value={query}
           onChange={(e) => {
