@@ -20,3 +20,6 @@ export const enabledStores: StoreId[] = STORE_IDS.filter((id) => (siteConfig.ena
 export function isStoreId(value: unknown): value is StoreId {
   return typeof value === "string" && (STORE_IDS as readonly string[]).includes(value);
 }
+
+/** Storefront for shared pages before a visitor picks one — siteConfig.defaultStore, or the first enabled store. */
+export const defaultStore: StoreId = enabledStores.includes(siteConfig.defaultStore) ? siteConfig.defaultStore : (enabledStores[0] ?? siteConfig.defaultStore);

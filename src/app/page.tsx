@@ -10,5 +10,5 @@ export const metadata: Metadata =
     : { ...storefrontMetadata(siteConfig.home), alternates: { canonical: "/" } };
 
 export default function Home() {
-  return siteConfig.home === "showcase" ? <Showcase /> : <StorefrontHome store={siteConfig.home} />;
+  return siteConfig.home === "showcase" ? <Showcase /> : <StorefrontHome store={siteConfig.home} isSiteHome />;
 }
