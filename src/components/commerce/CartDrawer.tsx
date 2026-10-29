@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle2, ShoppingBag } from "lucide-react";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Modal } from "@/components/ui/Modal";
 import { commerceConfig } from "@/config/commerce.config";
@@ -37,9 +37,16 @@ export function CartDrawer({ store }: { store: StoreId }) {
               <span className="font-medium tabular-nums">{formatMoney(totals.subtotal)}</span>
             </div>
             <p className="text-xs text-fg-muted">Shipping, discounts and estimated tax are calculated at checkout.</p>
-            <ButtonLink href="/checkout" onClick={close} className="w-full" aria-disabled={blocking || undefined}>
-              Checkout
-            </ButtonLink>
+            {blocking ? (
+              <Button className="w-full" disabled>
+                Checkout
+              </Button>
+            ) : (
+              <ButtonLink href="/checkout" onClick={close} className="w-full">
+                Checkout
+              </ButtonLink>
+            )}
+            {blocking && <p className="text-xs text-sale">Remove unavailable items to check out.</p>}
             <ButtonLink href="/cart" onClick={close} variant="outline" className="w-full">
               View bag
             </ButtonLink>
