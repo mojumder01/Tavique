@@ -5,8 +5,9 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ButtonLink } from "@/components/ui/Button";
 import { enabledStores, storeConfigs } from "@/config/stores";
 import { siteConfig } from "@/config/site.config";
-import { getActiveStore } from "@/lib/active-store";
+import { renderForActiveStore } from "@/lib/render-for-store";
 import { storeHome } from "@/lib/routes";
+import type { StoreId } from "@/types/catalog";
 
 export const metadata: Metadata = { title: "About", description: `The story behind ${siteConfig.name}: considered products, honest information and fewer, better things.`, alternates: { canonical: "/about" } };
 
@@ -17,7 +18,10 @@ const values = [
 ];
 
 export default async function AboutPage() {
-  const store = await getActiveStore();
+  return renderForActiveStore(renderAboutPage);
+}
+
+function renderAboutPage(store: StoreId) {
   const config = storeConfigs[store];
   return (
     <StoreShell store={store}>

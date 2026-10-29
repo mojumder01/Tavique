@@ -2,13 +2,17 @@ import type { Metadata } from "next";
 import { CheckoutForm } from "@/components/commerce/CheckoutForm";
 import { StoreShell } from "@/components/layout/StoreShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { getActiveStore } from "@/lib/active-store";
+import { renderForActiveStore } from "@/lib/render-for-store";
 import { storeHome } from "@/lib/routes";
+import type { StoreId } from "@/types/catalog";
 
 export const metadata: Metadata = { title: "Checkout", robots: { index: false, follow: false }, alternates: { canonical: "/checkout" } };
 
 export default async function CheckoutPage() {
-  const store = await getActiveStore();
+  return renderForActiveStore(renderCheckoutPage);
+}
+
+function renderCheckoutPage(store: StoreId) {
   return (
     <StoreShell store={store} footerNewsletter={false}>
       <div className="page pt-6 pb-24 md:pt-8">

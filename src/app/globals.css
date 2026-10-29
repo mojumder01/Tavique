@@ -268,3 +268,13 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Static export: shared pages (cart, FAQ…) are pre-rendered for every storefront. Until React shows
+ * the one saved in the cookie, hide a pre-rendered storefront that doesn't match it.
+ */
+html[data-cookie-store="fashion"] [data-store-switch]:not([data-store-switch="fashion"]),
+html[data-cookie-store="electronics"] [data-store-switch]:not([data-store-switch="electronics"]),
+html[data-cookie-store="beauty"] [data-store-switch]:not([data-store-switch="beauty"]) {
+  visibility: hidden;
+}

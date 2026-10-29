@@ -3,14 +3,18 @@ import type { Metadata } from "next";
 import { StoreShell } from "@/components/layout/StoreShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { commerceConfig } from "@/config/commerce.config";
-import { getActiveStore } from "@/lib/active-store";
+import { renderForActiveStore } from "@/lib/render-for-store";
 import { formatPrice } from "@/lib/money";
 import { storeHome } from "@/lib/routes";
+import type { StoreId } from "@/types/catalog";
 
 export const metadata: Metadata = { title: "Shipping & Returns", description: "Delivery options and costs, our 30-day returns policy and electronics warranty.", alternates: { canonical: "/shipping-returns" } };
 
 export default async function ShippingReturnsPage() {
-  const store = await getActiveStore();
+  return renderForActiveStore(renderShippingReturnsPage);
+}
+
+function renderShippingReturnsPage(store: StoreId) {
   return (
     <StoreShell store={store}>
       <div className="page pt-6 pb-24 md:pt-8">

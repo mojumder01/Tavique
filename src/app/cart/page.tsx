@@ -4,13 +4,17 @@ import { StoreShell } from "@/components/layout/StoreShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { getStoreConfig } from "@/config/stores";
 import { getProductsBySlugs, toSummary } from "@/data/products";
-import { getActiveStore } from "@/lib/active-store";
+import { renderForActiveStore } from "@/lib/render-for-store";
 import { storeHome } from "@/lib/routes";
+import type { StoreId } from "@/types/catalog";
 
 export const metadata: Metadata = { title: "Your bag", robots: { index: false, follow: true }, alternates: { canonical: "/cart" } };
 
 export default async function CartPage() {
-  const store = await getActiveStore();
+  return renderForActiveStore(renderCartPage);
+}
+
+function renderCartPage(store: StoreId) {
   const config = getStoreConfig(store);
   const suggestions = getProductsBySlugs(config.bestSellers).slice(0, 4).map(toSummary);
   return (

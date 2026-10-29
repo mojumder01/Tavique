@@ -1,0 +1,55 @@
+# Builds a static export of the store and publishes it to GitHub Pages
+# on every push to the default branch. One-time setup:
+# Settings → Pages → Source: GitHub Actions. See docs/DEPLOYMENT.md.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+  workflow_dispatch: # "Run workflow" button in the Actions tab
+
+# Only what a Pages deploy needs
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; a newer push waits instead of cancelling a running deploy
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Deploy from the default branch only
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - id: pages
+        uses: actions/configure-pages@v5
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+        env:
+          STATIC_EXPORT: "true"
+          # e.g. "/Tavique" and "https://user.github.io/Tavique"
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

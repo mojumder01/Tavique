@@ -5,6 +5,9 @@ import { categories } from "@/data/categories";
 import { products } from "@/data/products";
 import { categoryHref, productHref } from "@/lib/routes";
 
+// Plain files, so they also work in a static export.
+export const dynamic = "force-static";
+
 /** Public, indexable pages only (cart, checkout, account, search and wishlist are excluded). */
 export default function sitemap(): MetadataRoute.Sitemap {
   const url = (path: string) => `${siteConfig.url}${path}`;

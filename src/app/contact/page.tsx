@@ -4,13 +4,17 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { StoreShell } from "@/components/layout/StoreShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { siteConfig } from "@/config/site.config";
-import { getActiveStore } from "@/lib/active-store";
+import { renderForActiveStore } from "@/lib/render-for-store";
 import { storeHome } from "@/lib/routes";
+import type { StoreId } from "@/types/catalog";
 
 export const metadata: Metadata = { title: "Contact", description: "Questions about an order, a product or a return? Get in touch.", alternates: { canonical: "/contact" } };
 
 export default async function ContactPage() {
-  const store = await getActiveStore();
+  return renderForActiveStore(renderContactPage);
+}
+
+function renderContactPage(store: StoreId) {
   const { contact } = siteConfig;
   const items = [
     { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}` },

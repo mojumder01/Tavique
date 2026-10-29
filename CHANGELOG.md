@@ -2,6 +2,12 @@
 
 All notable changes to Tavique are documented here. The project follows [Semantic Versioning](https://semver.org).
 
+## Unreleased
+
+### Added
+
+- Static export for GitHub Pages and other static hosts (`STATIC_EXPORT=true`), with a deploy workflow. Shared pages keep the visitor's storefront without a server.
+
 ## 1.0.0 (2026-10-29)
 
 First release.

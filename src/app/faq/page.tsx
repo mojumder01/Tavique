@@ -5,13 +5,17 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { faqGroups } from "@/data/content";
-import { getActiveStore } from "@/lib/active-store";
+import { renderForActiveStore } from "@/lib/render-for-store";
 import { storeHome } from "@/lib/routes";
+import type { StoreId } from "@/types/catalog";
 
 export const metadata: Metadata = { title: "FAQ", description: "Answers about orders, payment, shipping, returns and warranty.", alternates: { canonical: "/faq" } };
 
 export default async function FAQPage() {
-  const store = await getActiveStore();
+  return renderForActiveStore(renderFAQPage);
+}
+
+function renderFAQPage(store: StoreId) {
   return (
     <StoreShell store={store}>
       <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqGroups.flatMap((g) => g.items).map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } })) }} />

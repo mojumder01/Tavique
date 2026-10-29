@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site.config";
 import { categories } from "@/data/categories";
 import { productSummaries } from "@/data/products";
 import { fontVariables } from "@/lib/fonts";
+import { isStaticExport, storeCookieScript } from "@/lib/static-export";
 import { themeInitScript } from "@/lib/theme-script";
 import "./globals.css";
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {isStaticExport && <script dangerouslySetInnerHTML={{ __html: storeCookieScript }} />}
       </head>
       <body>
         <Providers products={productSummaries} categories={categories}>

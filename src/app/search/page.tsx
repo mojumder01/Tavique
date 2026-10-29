@@ -5,8 +5,9 @@ import { StoreShell } from "@/components/layout/StoreShell";
 import { ProductGridSkeleton } from "@/components/ui/Skeleton";
 import { getStoreConfig } from "@/config/stores";
 import { getCategory } from "@/data/categories";
-import { getActiveStore } from "@/lib/active-store";
+import { renderForActiveStore } from "@/lib/render-for-store";
 import { storeHome } from "@/lib/routes";
+import type { StoreId } from "@/types/catalog";
 
 export const metadata: Metadata = {
   title: "Search",
@@ -17,7 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default async function SearchPage() {
-  const store = await getActiveStore();
+  return renderForActiveStore(renderSearchPage);
+}
+
+function renderSearchPage(store: StoreId) {
   const config = getStoreConfig(store);
   const suggested = config.categories
     .map((s) => getCategory(s))

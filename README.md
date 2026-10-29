@@ -8,6 +8,8 @@ Tavique is a premium e-commerce template built with Next.js, TypeScript and Tail
 | **Electronics & Gadgets** | `/electronics` | Search-first and technical: Geist, graphite and blue, spec comparisons, light and dark themes |
 | **Beauty & Personal Care** | `/beauty` | Soft and refined: Newsreader and Figtree, cream and blush, concern tiles and routines |
 
+**Live demo:** https://mojumder01.github.io/Tavique/
+
 All three share one component library, one cart, one checkout and 49 demo products. Each store has its own config file for theme, navigation, homepage sections, filters and copy. You can launch one storefront or all three.
 
 > **Demo template.** Checkout, sign-in and order history are simulated in the browser. No payment is taken and no card details are collected. See [docs/FEATURES.md](docs/FEATURES.md) for what works today and what needs a backend.
@@ -78,7 +80,7 @@ docs/                  Customization, routes, features, deployment, credits…
 - [Customization](docs/CUSTOMIZATION.md): brand, colours, fonts, products, categories, images, single-store setup
 - [Routes and components](docs/ROUTES-AND-COMPONENTS.md): every page and the main building blocks
 - [Features and demo limitations](docs/FEATURES.md): what's functional, what's simulated, demo discount codes
-- [Deployment](docs/DEPLOYMENT.md): Vercel, Node servers, Docker, environment variables
+- [Deployment](docs/DEPLOYMENT.md): Vercel, GitHub Pages, Node servers, Docker, environment variables
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [Credits and licences](docs/CREDITS.md)
 - [Screenshot plan](docs/SCREENSHOTS.md) and [marketplace listing](docs/MARKETPLACE.md)

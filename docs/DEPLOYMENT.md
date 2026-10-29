@@ -29,6 +29,26 @@ Because `NEXT_PUBLIC_` variables are inlined at build time, **redeploy after cha
 
 Import the repository. Netlify's Next.js runtime is applied automatically. Use `npm run build` as the build command and set the same environment variables.
 
+## GitHub Pages (static export)
+
+GitHub Pages and other static hosts serve plain files, so the store is built as a static export:
+
+1. In the repository, open **Settings → Pages** and set **Source** to **GitHub Actions**.
+2. Push to the default branch. `.github/workflows/deploy-pages.yml` runs the checks, builds the export and publishes it to `https://<user>.github.io/<repo>/`.
+
+To build the same export locally (the files land in `out/`):
+
+```bash
+STATIC_EXPORT=true NEXT_PUBLIC_BASE_PATH=/<repo> NEXT_PUBLIC_SITE_URL=https://<user>.github.io/<repo> npm run build
+```
+
+What changes in a static export:
+
+- **Shared pages** (cart, checkout, FAQ, account…) are pre-rendered for every enabled storefront, and the browser shows the one the visitor last browsed. On a server, the store comes from a cookie instead.
+- **Images** are served as they are (`src/lib/image-loader.ts`), without resizing or AVIF/WebP conversion.
+- **Security headers** in `next.config.ts` aren't sent, because static hosts don't run Next.js. Set them on the host if it supports it.
+- `robots.txt` is only read at a domain's root, so it has no effect under `/<repo>/`.
+
 ## Any Node.js server
 
 ```bash
