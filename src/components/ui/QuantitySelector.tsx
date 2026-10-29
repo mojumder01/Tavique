@@ -1,7 +1,7 @@
 "use client";
 
 import { Minus, Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { clamp, cn } from "@/lib/utils";
 
 interface Props {
@@ -16,12 +16,13 @@ interface Props {
 
 /** − / input / + stepper. Typed values are clamped on blur; buttons disable at the limits. */
 export function QuantitySelector({ value, onChange, min = 1, max, label = "Quantity", size = "md", className }: Props) {
-  const [draft, setDraft] = useState(String(value));
-  useEffect(() => setDraft(String(value)), [value]);
+  // Free text is only kept while the field is being edited; otherwise the prop is shown.
+  const [draft, setDraft] = useState<string | null>(null);
   const commit = () => {
+    if (draft == null) return;
     const n = Number.parseInt(draft, 10);
     const next = Number.isFinite(n) ? clamp(n, min, Math.max(min, max)) : value;
-    setDraft(String(next));
+    setDraft(null);
     if (next !== value) onChange(next);
   };
   const btn = "inline-flex h-full items-center justify-center text-fg transition-colors hover:bg-muted disabled:opacity-35";
@@ -35,8 +36,9 @@ export function QuantitySelector({ value, onChange, min = 1, max, label = "Quant
         inputMode="numeric"
         min={min}
         max={max}
-        value={draft}
+        value={draft ?? String(value)}
         aria-label={label}
+        onFocus={() => setDraft(String(value))}
         onChange={(e) => setDraft(e.target.value)}
         onBlur={commit}
         onKeyDown={(e) => e.key === "Enter" && commit()}

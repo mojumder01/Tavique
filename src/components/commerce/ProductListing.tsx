@@ -2,7 +2,7 @@
 
 import { SlidersHorizontal, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState, useTransition } from "react";
+import { useMemo, useOptimistic, useState, useTransition } from "react";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -56,8 +56,10 @@ export function ProductListing({ items, facets, labels, categoryNames, card, pag
   const [pending, startTransition] = useTransition();
   const [drawer, setDrawer] = useState(false);
 
-  const state = useMemo(() => parseFilters(new URLSearchParams(params.toString()), facets), [params, facets]);
-  const page = Math.max(1, Number(params.get("page")) || 1);
+  const urlState = useMemo(() => parseFilters(new URLSearchParams(params.toString()), facets), [params, facets]);
+  const urlPage = Math.max(1, Number(params.get("page")) || 1);
+  // The URL is the source of truth; the optimistic copy makes controls respond before navigation settles.
+  const [{ state, page }, setOptimistic] = useOptimistic({ state: urlState, page: urlPage });
   const results = useMemo(() => {
     const filtered = applyFilters(items, state);
     if (!relevance || state.sort !== "featured") return filtered;
@@ -71,7 +73,10 @@ export function ProductListing({ items, facets, labels, categoryNames, card, pag
     const sp = serializeFilters(next, new URLSearchParams(params.toString()));
     if (nextPage && nextPage > 1) sp.set("page", String(nextPage));
     const qs = sp.toString();
-    startTransition(() => router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false }));
+    startTransition(() => {
+      setOptimistic({ state: next, page: nextPage ?? 1 });
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    });
   };
 
   const chips: { label: string; remove: () => FilterState }[] = [];

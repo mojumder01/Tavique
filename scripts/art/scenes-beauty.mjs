@@ -1,4 +1,4 @@
-import { svg, place, backdrop, contactShadow, shade, grain, rng, blob, uid, radial, linear } from "./lib.mjs";
+import { svg, place, backdrop, contactShadow, shade, grain, rng, blob } from "./lib.mjs";
 import * as B from "./beauty.mjs";
 
 const W = 1200;
@@ -141,7 +141,6 @@ const categories = [
   cat("personal-care", [[B.stick(), 330, 1.2], [B.tube({ w: 150, h: 420, brand: "AUREL", sub: "HAND CREAM", cap: "#b9a28a", labelColor: "#7c6252" }), 600, 1.1]], SURF.sage),
 ];
 
-// unused helpers kept tree-shake friendly for future scenes
-void uid; void radial; void linear;
+const beautyScenes = [...products, ...concerns, ...editorial, ...categories];
 
-export default [...products, ...concerns, ...editorial, ...categories];
+export default beautyScenes;

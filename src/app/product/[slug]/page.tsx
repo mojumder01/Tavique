@@ -20,6 +20,9 @@ import { productJsonLd } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// Only the slugs from generateStaticParams exist; anything else is a 404.
+export const dynamicParams = false;
+
 const aspects = { "3/4": "aspect-[3/4]", "4/5": "aspect-[4/5]", "1/1": "aspect-square" } as const;
 
 export function generateStaticParams() {

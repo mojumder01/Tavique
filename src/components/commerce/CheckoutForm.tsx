@@ -5,7 +5,7 @@ import { CreditCard, Info, Lock, ShoppingBag, Wand2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
-import { useForm, type FieldErrors, type UseFormRegister } from "react-hook-form";
+import { useForm, useWatch, type FieldErrors, type UseFormRegister } from "react-hook-form";
 import { useCatalog } from "@/components/layout/CatalogProvider";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Checkbox, describedBy, Field, Input, Select, Textarea } from "@/components/ui/Field";
@@ -123,15 +123,15 @@ export function CheckoutForm({ continueHref }: { continueHref: string }) {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<CheckoutValues>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: { billingSame: true, payment: "card", shipping: { country: "United States" }, billing: { country: "United States" } },
   });
-  const billingSame = watch("billingSame");
-  const payment = watch("payment");
+  const billingSame = useWatch({ control, name: "billingSame" });
+  const payment = useWatch({ control, name: "payment" });
   const errs = submitted ? errorList(errors) : [];
 
   if (!hydrated) {

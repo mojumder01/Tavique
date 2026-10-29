@@ -13,6 +13,9 @@ import { categoryHref, storeHome } from "@/lib/routes";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// Only the slugs from generateStaticParams exist; anything else is a 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return categories.filter((c) => enabledStores.includes(c.niche)).map((c) => ({ slug: c.slug }));
 }

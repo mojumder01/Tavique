@@ -88,4 +88,6 @@ const campaign = [
   { file: "electronics/gaming.webp", w: 1200, h: 900, svg: () => dark(place(E.handheld({ color: "#2d3036", accent: "#4f8cff", wall: WP.violet }), { x: 600, y: 420, s: 0.95, r: -6 }) + place(E.controller({ color: "#f1f1ef", accent: "#2f3238" }), { x: 820, y: 700, s: 0.7, r: 12 }), { w: 1200, h: 900, glow: "#8a5cff" }) },
 ];
 
-export default [...products, ...categories, ...campaign];
+const electronicsScenes = [...products, ...categories, ...campaign];
+
+export default electronicsScenes;

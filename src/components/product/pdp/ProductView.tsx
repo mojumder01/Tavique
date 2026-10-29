@@ -62,18 +62,24 @@ export function ProductView({ product, aspect, details, below }: { product: Prod
   const v = useMemo(() => resolveVariant(product, selection), [product, selection]);
 
   useEffect(() => addViewed(product.id), [product.id, addViewed]);
-  useEffect(() => {
-    if (!v.image) return;
-    const i = product.images.findIndex((img) => img.src === v.image);
-    if (i >= 0) setImageIndex(i);
-  }, [v.image, product.images]);
-  useEffect(() => setQuantity((q) => Math.max(1, Math.min(q, Math.max(1, v.stock)))), [v.stock]);
 
   const soldOut = v.complete ? v.stock <= 0 : product.stock <= 0;
   const maxQty = Math.max(1, Math.min(commerceConfig.maxQuantityPerLine, v.complete ? v.stock : product.stock));
+  // Derived rather than synced: switching to a lower-stock option caps the quantity automatically.
+  const qty = Math.min(quantity, maxQty);
+
+  const choose = (groupId: string, value: string) => {
+    const next = { ...selection, [groupId]: value };
+    setSelection(next);
+    setInvalid((i) => i.filter((x) => x !== groupId));
+    // Show the image that belongs to the newly chosen colour/shade.
+    const image = resolveVariant(product, next).image;
+    const index = image ? product.images.findIndex((img) => img.src === image) : -1;
+    if (index >= 0) setImageIndex(index);
+  };
 
   const submit = (buyNow: boolean) => {
-    const result = addToCart(product, selection, quantity, { openCart: !buyNow });
+    const result = addToCart(product, selection, qty, { openCart: !buyNow });
     if (!result.ok && result.reason === "missing") {
       setInvalid(result.missing);
       requestAnimationFrame(() => errorRef.current?.focus());
@@ -125,10 +131,7 @@ export function ProductView({ product, aspect, details, below }: { product: Prod
                 product={product}
                 selection={selection}
                 invalidGroups={invalid}
-                onChange={(g, value) => {
-                  setSelection((s) => ({ ...s, [g]: value }));
-                  setInvalid((i) => i.filter((x) => x !== g));
-                }}
+                onChange={choose}
                 groupAction={(g) => (g === "size" && product.sizeGuide ? <SizeGuide kind={product.sizeGuide} fit={product.fit} /> : null)}
               />
             </div>
@@ -146,9 +149,9 @@ export function ProductView({ product, aspect, details, below }: { product: Prod
           )}
 
           <div className="mt-6 flex gap-3">
-            <QuantitySelector value={quantity} onChange={setQuantity} max={maxQty} />
+            <QuantitySelector value={qty} onChange={setQuantity} max={maxQty} />
             <Button size="lg" className="flex-1" onClick={() => submit(false)} disabled={soldOut}>
-              {soldOut ? "Sold out" : `Add to bag · ${formatPrice(v.price * quantity)}`}
+              {soldOut ? "Sold out" : `Add to bag · ${formatPrice(v.price * qty)}`}
             </Button>
           </div>
           <div className="mt-3 flex gap-3">

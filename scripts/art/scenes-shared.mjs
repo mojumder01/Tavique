@@ -21,4 +21,6 @@ const og = () => {
   );
 };
 
-export default [{ file: "og/tavique.jpg", w: 1200, h: 630, svg: og }];
+const sharedScenes = [{ file: "og/tavique.jpg", w: 1200, h: 630, svg: og }];
+
+export default sharedScenes;

@@ -1,4 +1,4 @@
-import { svg, place, backdrop, wallShadow, contactShadow, shade, grain, uid, linear, blurFilter, rng } from "./lib.mjs";
+import { svg, place, backdrop, wallShadow, contactShadow, shade, grain, uid, blurFilter, rng } from "./lib.mjs";
 import * as F from "./fashion.mjs";
 
 const W = 1200;
@@ -36,7 +36,6 @@ const add = (slug, variants, drawFn, sceneFn, altFn) => {
   });
 };
 
-const hang = (wall) => (c, w2) => hanging(F.hanger() + c, { wall: w2 ?? wall });
 const hangAlt = (wall, s = 2.3, top = -40, cx = W / 2 + 60) => (c) => detail(F.hanger() + c, { wall, s, top, cx });
 
 add("wool-overcoat", [["camel", { color: "#b8946a" }, WALLS.warm], ["charcoal", { color: "#45413d" }, WALLS.sand], ["oat", { color: "#d6c9b3" }, WALLS.stone]], F.coat, (c, w) => hanging(F.hanger() + c, { wall: w, s: 1.36, top: 150 }), hangAlt(WALLS.stone, 2.4, -60));
@@ -107,4 +106,6 @@ const categories = [
   tile("sale", hangAt(F.knit, { color: "#8b8a6a" }, 450, 200, 1.2), WALLS.sand),
 ];
 
-export default [...products, ...campaign, ...categories];
+const fashionScenes = [...products, ...campaign, ...categories];
+
+export default fashionScenes;

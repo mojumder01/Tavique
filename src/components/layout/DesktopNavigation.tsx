@@ -10,19 +10,20 @@ import type { NavItem } from "@/types/store";
 
 /** Top-level navigation. Items with a `mega` config open a full-width panel on hover, click or keyboard. */
 export function DesktopNavigation({ items, align = "left", tone = "default", className }: { items: NavItem[]; align?: "left" | "center"; tone?: "default" | "caps"; className?: string }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const pathname = usePathname();
+  // Remember which path a panel was opened on, so navigating closes it without an effect.
+  const [open, setOpen] = useState<{ index: number; path: string } | null>(null);
+  const openIndex = open && open.path === pathname ? open.index : null;
+  const setOpenIndex = (index: number | null) => setOpen(index == null ? null : { index, path: pathname });
   const timer = useRef<number | undefined>(undefined);
   const triggers = useRef<(HTMLButtonElement | null)[]>([]);
-  const pathname = usePathname();
   const baseId = useId();
-
-  useEffect(() => setOpenIndex(null), [pathname]);
   useEffect(() => {
     if (openIndex == null) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         triggers.current[openIndex]?.focus();
-        setOpenIndex(null);
+        setOpen(null);
       }
     };
     document.addEventListener("keydown", onKey);

@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronDown, Star } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { facetValues, inStockCount, priceBounds, type FilterState } from "@/lib/filters";
 import { formatPrice } from "@/lib/money";
 import { cn } from "@/lib/utils";
@@ -76,10 +76,6 @@ export function PriceRangeFilter({ items, value, onChange }: { items: ProductSum
   const [min, setMin] = useState(value.min?.toString() ?? "");
   const [max, setMax] = useState(value.max?.toString() ?? "");
   const id = useId();
-  useEffect(() => {
-    setMin(value.min?.toString() ?? "");
-    setMax(value.max?.toString() ?? "");
-  }, [value.min, value.max]);
   // Quick "Under $X" chips at roughly a third and two thirds of this listing's price range.
   const nice = (v: number) => {
     const unit = v >= 1000 ? 250 : v >= 200 ? 50 : 10;
@@ -134,7 +130,7 @@ export function ProductFilters({ items, state, facets, labels, categoryNames, on
         if (key === "price")
           return (
             <Section key={key} title={label(key)} count={state.price.min != null || state.price.max != null ? 1 : 0}>
-              <PriceRangeFilter items={items} value={state.price} onChange={(price) => onChange({ ...state, price })} />
+              <PriceRangeFilter key={`${state.price.min ?? ""}-${state.price.max ?? ""}`} items={items} value={state.price} onChange={(price) => onChange({ ...state, price })} />
             </Section>
           );
         if (key === "rating")
@@ -191,7 +187,7 @@ export function ProductFilters({ items, state, facets, labels, categoryNames, on
         const selected = bucket[name] ?? [];
         if (!values.length && !selected.length) return null;
         return (
-          <Section key={key} title={label(key)} count={selected.length} defaultOpen={selected.length > 0 || facets.indexOf(key) < 4}>
+          <Section key={key} title={label(key)} count={selected.length} defaultOpen={selected.length > 0 || facets.indexOf(key) < 5}>
             <CheckList
               name={label(key)}
               values={values}
